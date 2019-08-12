@@ -5,20 +5,8 @@ import 'package:flutter_myapp/widgets/tasks_list.dart';
 
 import 'package:provider/provider.dart';
 import './add_task_screen.dart';
-import '../models/task.dart';
 
-class TaskScreen extends StatefulWidget {
-  @override
-  _TaskScreenState createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  // List<Task> tasks = [
-  //   Task(name: 'Read the two declarations!'),
-  //   Task(name: 'Determine what you want..'),
-  //   Task(name: 'Visualization in 10 minutes.'),
-  // ];
-
+class TaskScreen extends StatelessWidget {
   Widget buildButtomSheet(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white),
@@ -73,7 +61,7 @@ class _TaskScreenState extends State<TaskScreen> {
                           fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      '${Provider.of<TaskData>(context).tasks.length} Tasks',
+                      '${Provider.of<TaskData>(context).taskCount} Tasks',
                       style: TextStyle(color: Colors.white, letterSpacing: 1.2),
                     ),
                   ],
