@@ -9,10 +9,10 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  List<Task> globalTasks = [
-    Task(name: 'G-Read the two declarations!'),
-    Task(name: 'G-Determine what you want..'),
-    Task(name: 'G-Visualization in 10 minutes.'),
+  List<Task> tasks = [
+    Task(name: 'Read the two declarations!'),
+    Task(name: 'Determine what you want..'),
+    Task(name: 'Visualization in 10 minutes.'),
   ];
 
   Widget buildButtomSheet(BuildContext context) {
@@ -28,7 +28,13 @@ class _TaskScreenState extends State<TaskScreen> {
         child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
-              context: context, builder: (context) => new AddTaskScreen());
+              context: context,
+              builder: (context) => new AddTaskScreen((newTaskTitle) => {
+                    // print('Hello ' + newTaskTitle)
+                    setState(() {
+                      tasks.add(Task(name: newTaskTitle));
+                    })
+                  }));
         });
 
     return Scaffold(
@@ -78,7 +84,7 @@ class _TaskScreenState extends State<TaskScreen> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20.0),
                             topRight: Radius.circular(20.0))),
-                    child: TasksList()),
+                    child: TasksList(tasks)),
               )
             ]));
   }
